@@ -29,6 +29,19 @@ export function GameGrid({
   const [isComplete, setIsComplete] = useState(false);
   const [showHint, setShowHint] = useState<{ row: number; col: number; hint?: string } | null>(null);
 
+  // --- ADDED: Reset the game state whenever the puzzle patterns or solution change ---
+  useEffect(() => {
+    setGrid(Array(size).fill(null).map(() => Array(size).fill('')));
+    setValidation({
+      rows: Array(size).fill(false),
+      columns: Array(size).fill(false),
+    });
+    setIsComplete(false);
+    setShowHint(null);
+    setSelectedCell({ row: 0, col: 0 });
+  }, [size, rowPatterns, columnPatterns, solution]);
+  // ---------------------------------------------------------------------------------
+
   useEffect(() => {
     const result = RegexEngine.validateGrid(grid, rowPatterns, columnPatterns);
     setValidation({ rows: result.rows, columns: result.columns });
@@ -127,7 +140,7 @@ export function GameGrid({
             <div
               key={`col-${idx}`}
               className={`w-16 h-16 flex items-center justify-center text-xs font-mono px-1 transition-colors ${
-                validation.columns[idx] ? 'text-green-600 dark:text-green-400' : 'text-gray-500'
+                validation.columns[idx] ? 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-t-lg' : 'text-gray-500'
               }`}
               title={RegexEngine.explainPattern(pattern)}
             >
@@ -141,7 +154,7 @@ export function GameGrid({
             <div key={`row-${rowIdx}`} className="flex">
               <div
                 className={`w-16 h-16 flex items-center justify-center text-xs font-mono px-1 transition-colors ${
-                  validation.rows[rowIdx] ? 'text-green-600 dark:text-green-400' : 'text-gray-500'
+                  validation.rows[rowIdx] ? 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-l-lg' : 'text-gray-500'
                 }`}
                 title={RegexEngine.explainPattern(rowPatterns[rowIdx])}
               >
@@ -174,6 +187,22 @@ export function GameGrid({
         </div>
       </div>
 
+      {/* ADDED: Explicit Feedback Message */}
+      {(validation.rows.some(r => r) || validation.columns.some(c => c)) && !isComplete && (
+        <div className="flex gap-4 text-sm font-bold">
+          {validation.rows.some(r => r) && (
+            <span className="text-green-600 dark:text-green-400">
+              {validation.rows.filter(r => r).length} Rows Correct ✓
+            </span>
+          )}
+          {validation.columns.some(c => c) && (
+            <span className="text-green-600 dark:text-green-400">
+              {validation.columns.filter(c => c).length} Cols Correct ✓
+            </span>
+          )}
+        </div>
+      )}
+
       {isComplete && (
         <div className="animate-bounce text-4xl">
           🎉
@@ -183,21 +212,21 @@ export function GameGrid({
       <div className="flex gap-3">
         <button
           onClick={handleHint}
-          className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-semibold transition-colors"
+          className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-semibold transition-colors shadow-sm"
         >
           💡 Hint
         </button>
         <button
           onClick={handleClear}
-          className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition-colors"
+          className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition-colors shadow-sm"
         >
           Clear
         </button>
       </div>
 
       {showHint && showHint.hint && (
-        <div className="px-4 py-2 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-500 rounded-lg text-sm">
-          {showHint.hint}
+        <div className="px-4 py-2 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-500 rounded-lg text-sm font-medium text-yellow-800 dark:text-yellow-200">
+          Hint: {showHint.hint}
         </div>
       )}
     </div>

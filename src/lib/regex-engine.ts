@@ -1,39 +1,83 @@
 export class RegexEngine {
   static validatePattern(pattern: string, testString: string): boolean {
     try {
+      // protect if pattern is unexpectedly empty/null
+      if (!pattern) {
+        console.warn('[RegexEngine] validatePattern called with empty pattern');
+        return false;
+      }
+      // Use try/catch in case the pattern is invalid
       const regex = new RegExp(`^${pattern}$`);
-      return regex.test(testString);
+      const result = regex.test(testString);
+      // log for debugging — remove or reduce verbosity in production
+      console.debug(`[RegexEngine] pattern: /${pattern}/, testString: "${testString}", result: ${result}`);
+      return result;
     } catch (error) {
-      console.error('Invalid regex pattern:', error);
+      console.error('[RegexEngine] Invalid regex pattern:', pattern, error);
       return false;
     }
   }
 
-  static validateGrid(grid: string[][], rowPatterns: string[], colPatterns: string[]): {
-    rows: boolean[];
-    columns: boolean[];
-    isComplete: boolean;
-  } {
+  static validateGrid(
+    grid: string[][],
+    rowPatterns: string[],
+    colPatterns: string[]
+  ): { rows: boolean[]; columns: boolean[]; isComplete: boolean } {
     const size = grid.length;
     const rows = new Array(size).fill(false);
     const columns = new Array(size).fill(false);
 
+    // Sanity checks
+    if (rowPatterns.length !== size) {
+      console.warn(`[RegexEngine] rowPatterns.length (${rowPatterns.length}) !== grid size (${size}).`);
+    }
+    if (colPatterns.length !== size) {
+      console.warn(`[RegexEngine] colPatterns.length (${colPatterns.length}) !== grid size (${size}).`);
+    }
+
+    // Helper: consider a cell filled only if it is not null/undefined/empty string
+    const isCellFilled = (cell: any) => cell !== null && cell !== undefined && cell !== '';
+
+    // Validate rows
     for (let i = 0; i < size; i++) {
-      const rowString = grid[i].join('');
-      if (rowString.length === size && !rowString.includes('')) {
-        rows[i] = this.validatePattern(rowPatterns[i], rowString);
+      const row = grid[i] || [];
+      const isRowFull = row.length === size && row.every(isCellFilled);
+      const rowString = row.map(c => (c == null ? '' : String(c))).join('');
+      if (!isRowFull) {
+        console.debug(`[RegexEngine] row ${i} not full -> "${rowString}"`);
+        rows[i] = false;
+      } else {
+        const pattern = rowPatterns[i] || '';
+        rows[i] = this.validatePattern(pattern, rowString);
+        if (!rows[i]) {
+          console.info(`[RegexEngine] row ${i} failed pattern. pattern="${pattern}" rowString="${rowString}"`);
+        }
       }
     }
 
+    // Validate columns
     for (let j = 0; j < size; j++) {
-      const colString = grid.map(row => row[j] || '').join('');
-      if (colString.length === size && !colString.includes('')) {
-        columns[j] = this.validatePattern(colPatterns[j], colString);
+      const colCells: string[] = [];
+      for (let i = 0; i < size; i++) {
+        const cell = (grid[i] && grid[i][j]) ?? '';
+        colCells.push(cell);
+      }
+      const isColFull = colCells.length === size && colCells.every(isCellFilled);
+      const colString = colCells.map(c => (c == null ? '' : String(c))).join('');
+      if (!isColFull) {
+        console.debug(`[RegexEngine] col ${j} not full -> "${colString}"`);
+        columns[j] = false;
+      } else {
+        const pattern = colPatterns[j] || '';
+        columns[j] = this.validatePattern(pattern, colString);
+        if (!columns[j]) {
+          console.info(`[RegexEngine] col ${j} failed pattern. pattern="${pattern}" colString="${colString}"`);
+        }
       }
     }
 
     const isComplete = rows.every(r => r) && columns.every(c => c);
-
+    console.debug(`[RegexEngine] validateGrid result rows=${JSON.stringify(rows)}, cols=${JSON.stringify(columns)}, isComplete=${isComplete}`);
     return { rows, columns, isComplete };
   }
 
@@ -47,13 +91,16 @@ export class RegexEngine {
 
     for (let i = 0; i < size; i++) {
       for (let j = 0; j < size; j++) {
-        if (!grid[i][j] || grid[i][j] !== solutionGrid[i][j]) {
+        // Check for empty string OR incorrect character
+        const current = grid[i] && grid[i][j];
+        const expected = solutionGrid[i][j];
+        if (current === '' || current === undefined || current !== expected) {
           if (level === 1) {
             return { row: i, col: j };
           } else if (level === 2) {
-            return { row: i, col: j, hint: `Character type: ${this.getCharType(solutionGrid[i][j])}` };
+            return { row: i, col: j, hint: `Character type: ${this.getCharType(expected)}` };
           } else if (level >= 3) {
-            return { row: i, col: j, hint: solutionGrid[i][j] };
+            return { row: i, col: j, hint: expected };
           }
         }
       }
@@ -103,7 +150,7 @@ export class RegexEngine {
 
     let explanation = 'Pattern: ';
     for (const key in explanations) {
-      if (pattern.includes(key)) {
+      if (Object.prototype.hasOwnProperty.call(explanations, key) && pattern.includes(key)) {
         explanation += `${key} (${explanations[key]}), `;
       }
     }
