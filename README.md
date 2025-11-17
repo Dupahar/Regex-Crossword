@@ -1,8 +1,8 @@
-\# 🧩 RƎGEX CROSSWORD
+\ 🧩 RƎGEX CROSSWORD
 
 
 
-\*\*You Think You Know Regex? Prove It.\*\*
+\\You Think You Know Regex? Prove It.\\
 
 
 
@@ -26,37 +26,15 @@
 
 
 
-Stop scrolling cheat sheets — \*\*this is how you actually learn regex\*\*.
+Stop scrolling cheat sheets — \\this is how you actually learn regex\\.
 
 
 
-Welcome to \*\*Regex Crossword\*\* — where `^\[A-Z]\\d{3}$` is a clue and `(CAT|ONE|PIN)` is a solution.
+Welcome to \\Regex Crossword\\ — where `^\[A-Z]\\d{3}$` is a clue and `(CAT|ONE|PIN)` is a solution.
 
 
 
-This isn’t a normal puzzle game. It’s a \*\*logic-twisting, brain-melting\*\* regex battleground for developers, data scientists, cybersecurity experts, and absolute legends who love pain.
-
-
-
----
-
-
-
-\## 🤯 Features
-
-
-
-\* \*\*Real-Time Validation\*\* – Rows \& columns turn green only when your regex matches.
-
-\* \*\*Brain-Bending Puzzles\*\* – Beginner → Expert puzzles that will humble you.
-
-\* \*\*Hint System\*\* – Nudge, clue, or full answer (with point penalties, of course).
-
-\* \*\*Modern UI\*\* – Built with React + Tailwind.
-
-\* \*\*Dark / Light Mode\*\* – Because your eyes matter.
-
-\* \*\*Supabase Backend\*\* – Auth, progress saving, leaderboards.
+This isn’t a normal puzzle game. It’s a \\logic-twisting, brain-melting\\ regex battleground for developers, data scientists, cybersecurity experts, and absolute legends who love pain.
 
 
 
@@ -64,19 +42,21 @@ This isn’t a normal puzzle game. It’s a \*\*logic-twisting, brain-melting\*\
 
 
 
-\## 🛠️ Tech Stack
+\ 🤯 Features
 
 
 
-\* ⚛️ \*\*React\*\*
+\ \\Real-Time Validation\\ – Rows \& columns turn green only when your regex matches.
 
-\* 🔷 \*\*TypeScript\*\*
+\ \\Brain-Bending Puzzles\\ – Beginner → Expert puzzles that will humble you.
 
-\* ⚡ \*\*Vite\*\*
+\ \\Hint System\\ – Nudge, clue, or full answer (with point penalties, of course).
 
-\* 🎨 \*\*Tailwind CSS\*\*
+\ \\Modern UI\\ – Built with React + Tailwind.
 
-\* 🌲 \*\*Supabase\*\*
+\ \\Dark / Light Mode\\ – Because your eyes matter.
+
+\ \\Supabase Backend\\ – Auth, progress saving, leaderboards.
 
 
 
@@ -84,11 +64,31 @@ This isn’t a normal puzzle game. It’s a \*\*logic-twisting, brain-melting\*\
 
 
 
-\## 🚀 Installation
+\ 🛠️ Tech Stack
 
 
 
-\### 1. Clone \& Install
+\ ⚛️ \\React\\
+
+\ 🔷 \\TypeScript\\
+
+\ ⚡ \\Vite\\
+
+\ 🎨 \\Tailwind CSS\\
+
+\ 🌲 \\Supabase\\
+
+
+
+---
+
+
+
+\ 🚀 Installation
+
+
+
+\ 1. Clone \& Install
 
 
 
@@ -104,7 +104,7 @@ npm install
 
 
 
-\### 2. Environment Setup
+\ 2. Environment Setup
 
 
 
@@ -122,7 +122,7 @@ VITE\_SUPABASE\_ANON\_KEY=your-public-anon-key
 
 
 
-\### 3. Supabase Database
+\ 3. Supabase Database
 
 
 
@@ -138,7 +138,7 @@ VITE\_SUPABASE\_ANON\_KEY=your-public-anon-key
 
 
 
-\## ▶️ Run the App
+\ ▶️ Run the App
 
 
 
@@ -150,7 +150,7 @@ npm run dev
 
 
 
-Your app is live at: \*\*\[http://localhost:5173](http://localhost:5173)\*\*
+Your app is live at: \\\[http://localhost:5173](http://localhost:5173)\\
 
 
 
@@ -158,23 +158,23 @@ Your app is live at: \*\*\[http://localhost:5173](http://localhost:5173)\*\*
 
 
 
-\## 🧠 Roadmap
+\ 🧠 Roadmap
 
 
 
-\* \[ ] User Accounts
+\ \[ ] User Accounts
 
-\* \[ ] Save Progress
+\ \[ ] Save Progress
 
-\* \[ ] Leaderboards
+\ \[ ] Leaderboards
 
-\* \[ ] Puzzle Editor
+\ \[ ] Puzzle Editor
 
-\* \[ ] Daily Challenges
+\ \[ ] Daily Challenges
 
-\* \[ ] Mobile App
+\ \[ ] Mobile App
 
-\* \[ ] Community Puzzle Library
+\ \[ ] Community Puzzle Library
 
 
 
@@ -182,7 +182,7 @@ Your app is live at: \*\*\[http://localhost:5173](http://localhost:5173)\*\*
 
 
 
-\## 💖 Contributing
+\ 💖 Contributing
 
 
 
@@ -194,7 +194,7 @@ PRs welcome! Spots for improvements include puzzle logic, UI polish, animations,
 
 
 
-\## 📜 License
+\ 📜 License
 
 
 
@@ -206,11 +206,11 @@ MIT License
 
 
 
-\## ⭐ Support
+\ ⭐ Support
 
 
 
-If you like this project, \*\*give it a star\*\* on GitHub! 🌟
+If you like this project, \\give it a star\\ on GitHub! 🌟
 
 
 
