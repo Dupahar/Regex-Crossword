@@ -6,11 +6,11 @@ You Think You Know Regex? Prove It.
 
 
 
-![Netlify Status](https://api.netlify.com/api/v1/badges/https://regex-crossword.netlify.app//deploy-status)
+![Netlify Status](https://api.netlify.com/api/v1/badges/ff315745-df57-4dd4-8f76-7c8b6d274ffc/deploy-status)
 ![Repo Size](https://img.shields.io/github/repo-size/your-username/regex-crossword?style=for-the-badge)
 ![License](https://img.shields.io/github/license/your-username/regex-crossword?style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/your-username/regex-crossword?style=for-the-badge)
-![Issues](https://img.shields.io/github/issues/your-username/regex-crossword?style=for-the-badge)
+![Issues](https://img.org/github/issues/your-username/regex-crossword?style=for-the-badge)
 ![Vite](https://img.shields.io/badge/Vite-FFDD00?logo=vite&logoColor=white&style=for-the-badge)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white&style=for-the-badge)
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge)
