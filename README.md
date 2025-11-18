@@ -6,22 +6,15 @@ You Think You Know Regex? Prove It.
 
 
 
+![Netlify Status](https://api.netlify.com/api/v1/badges/9c14a2a1-1b2d-4e3f-8a4c-5d6e7f8a9b0c/deploy-status)
 ![Repo Size](https://img.shields.io/github/repo-size/your-username/regex-crossword?style=for-the-badge)
-
 ![License](https://img.shields.io/github/license/your-username/regex-crossword?style=for-the-badge)
-
 ![Stars](https://img.shields.io/github/stars/your-username/regex-crossword?style=for-the-badge)
-
 ![Issues](https://img.shields.io/github/issues/your-username/regex-crossword?style=for-the-badge)
-
 ![Vite](https://img.shields.io/badge/Vite-FFDD00?logo=vite&logoColor=white&style=for-the-badge)
-
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white&style=for-the-badge)
-
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge)
-
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=for-the-badge)
-
 -------------------------------------------------------------------------------------------------------------------
 
 
